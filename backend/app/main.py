@@ -44,6 +44,10 @@ def params(
 def health():
     return {"ok": True}
 
+@app.get("/")
+def root():
+    return {"service": "Climate Hazard Trend Analyzer API", "docs": "/docs", "health": "/api/health"}
+
 @app.get("/api/geocode")
 @limiter.limit("60/minute")
 def geocode_ep(request: Request, q: str = Query(..., min_length=2, max_length=80)):
